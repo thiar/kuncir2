@@ -1,10 +1,25 @@
 <!DOCTYPE html>
-<html>
+<html ng-app='kuncir2'>
   <head>
     <title>{{title}}</title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel='stylesheet' href='/stylesheets/foundation.min.css' />
+    <link rel='stylesheet' href='/stylesheets/normalize.css' />
+    <script src='/javascripts/jquery-2.1.4.min.js'></script>
+    <script src='/javascripts/foundation.min.js'></script>
+    <script src='/javascripts/webcam.min.js'></script>
+    <script src='/javascripts/angular.min.js'></script>
+    <script src='/javascripts/app.js'></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/javascripts/bootbox.min.js"></script>
+
   </head>
   <body>
     {{{body}}}
+    <div id="alert" class="reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+	  <h2 id="modalTitle">Data Belum Lengkap!</h2>
+	  <p>Tolong isi data pada semua kolom dengan benar!</p>
+	  <a class="close-reveal-modal" aria-label="Close">&#215;</a>
+	</div>
   </body>
 </html>
