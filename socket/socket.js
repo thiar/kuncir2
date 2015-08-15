@@ -34,7 +34,6 @@ module.exports.listen = function(app){
 	    socket.on('last_ten',function(data){
 	    	admin_model.last_ten(function(rows){
 	    		socket.emit('respond_last_ten',rows);
-	    		console.log(rows[3].waktu)
 	    	})
 	    })
     })
