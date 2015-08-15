@@ -1,0 +1,67 @@
+<div ng-controller='admin' >
+	<div class="row" ng-show="!isBorrowed">
+		<div class="large-4 columns">
+			<div id="my_camera" style="width:320px; height:240px;"></div>
+		</div>
+		<div class="large-5 columns">
+			<fieldset>
+			    <legend>Isi Biodata Peminjam</legend>
+
+			    <label>NRP
+			      <input type="number" min="0" ng-model="nrp" name="nrp" />
+			    </label>
+			    <label>Nama
+			      <input ng-disabled="!isNewUser" type="text" ng-model="nama"/>
+			    </label>
+			    <label >No HP
+			      <input ng-disabled="!isNewUser" type="text" ng-model="noHp"/>
+			    </label>
+			    <label >Angkatan
+			      <input type="text" ng-model="angkatan" disabled>
+			    </label>
+			    <label>Jaminan
+			      <input type="text" ng-model="jaminan" >
+			    </label>
+			    <button type="submit" ng-click="BorrowKey()">pinjam</button>
+		    </fieldset>		
+		</div>
+		<div class="large-3 columns" style="overflow-y: scroll; height:540px;">
+			<fieldset>
+			    <legend>10 peminjam terakhir</legend>
+			    <div ng-repeat="user in last_ten">
+			    	<fieldset>
+			    		<legend>{[{$index+1}]}</legend>
+			    		<img src="{[{user.picture}]}" />
+			    		<label><b>nrp:</b>{[{user.nrp}]}</label>
+			    		<label><b>nama:</b>{[{user.nama}]}</label>
+			    		<label><b>jaminan:</b>{[{user.jaminan}]}</label>
+			    		<label><b>waktu:</b>{[{user.TIMEONLY}]} {[{user.DATEONLY}]}</label>
+			    	</fieldset>
+			    </div>
+			</fieldset>
+		</div>
+	</div>
+	<div class="row" ng-show="isBorrowed" >
+
+		<div class="small-6 large-centered columns">
+			<fieldset>
+			    <legend>Kunci Sedang dipinjam</legend>
+			    <div id="my_result"></div>
+			    <label>NRP
+			      <input type="number" min="0" ng-model="nrp" name="nrp" disabled/>
+			    </label>
+			    <label>Nama
+			      <input type="text" ng-model="nama" name="nama" disabled/>
+			    </label>
+			    <label>No HP
+			      <input type="text" ng-model="noHp" name="nohp" disabled/>
+			    </label>
+			    <label>Angkatan
+			      <input type="text" ng-model="angkatan" disabled>
+			    </label>
+			    <button type="button" ng-click="ReturnKey()">Kembalikan</button>
+		    </fieldset>		
+		</div>
+	</div>
+</div>
+
