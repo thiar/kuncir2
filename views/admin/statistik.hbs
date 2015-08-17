@@ -8,13 +8,21 @@
 			<select ng-init="graphicOpt='time'" ng-model="graphicOpt">
 				<option value="time">Statistik waktu peminjaman</option>
 				<option value="angkatan">Statistik peminjam perangkatan</option>
+				<option value="peminjaman">Grafik peminjam Kunci</option>
+
+			</select>
+			<select ng-show="graphicOpt=='peminjaman'" ng-init="month=MonthValues[0]" ng-model="month" ng-options="item as item.label for item in MonthValues">
 			</select>
 		</div>
 		<div class="large-14 columns">
 			<fieldset>
-			    <legend>Statistik waktu peminjaman kunci</legend>
+			    <legend ng-if="graphicOpt=='time'">Statistik waktu peminjaman kunci</legend>
+			    <legend ng-if="graphicOpt=='angkatan'">Statistik peminjam perangkatan</legend>
+			    <legend ng-if="graphicOpt=='peminjaman'">Statistik peminjaman kunci bulan {[{month.label}]}</legend>
+			    
 			      <canvas ng-if="graphicOpt=='time'" class="chart chart-bar" colours="colours" data="data" labels="labels"></canvas>
 			      <canvas ng-if="graphicOpt=='angkatan'" class="chart chart-polar-area" legend="true" colours="colours" data="data" labels="labels"></canvas>
+			       <canvas ng-if="graphicOpt=='peminjaman'" class="chart chart-line" colours="colours" data="data" labels="labels"></canvas>
 			    <button type="button" ng-click="refresh()">Refresh</button>
 		    </fieldset>
 		</div>

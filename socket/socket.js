@@ -5,6 +5,8 @@ module.exports.listen = function(app){
     io = socketio.listen(app)
     
     io.on('connection',function(socket) {
+    	
+
     	console.log('new connection')
     	socket.emit('news',{status:'connection'})
     	socket.on('checkNRP',function(data){
@@ -45,6 +47,13 @@ module.exports.listen = function(app){
 	    socket.on('getStatistikAngkatan',function(data){
 	    	admin_model.getStatistikAngkatan(function(rows){
 	    		socket.emit('resultStatistikAngkatan',rows)
+	    	})
+	    })
+	    socket.on('getStatistikPeminjaman',function(data){
+	    	var now = moment().format("YYYY");
+	    	var date = now +"-"+data.month;
+	    	admin_model.getStatistikPeminjaman(date,function(rows){
+	    		socket.emit('resultStatistikPeminjaman',rows)
 	    	})
 	    })
     })

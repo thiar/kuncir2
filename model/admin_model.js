@@ -42,7 +42,7 @@ module.exports.checkNRP = function(nrp,fn){
 					);
 				}
 module.exports.last_ten = function(fn){
-					driver.query("select DATE_FORMAT(waktu, '%Y-%m-%d') DATEONLY,DATE_FORMAT(waktu,'%H:%i:%s') TIMEONLY,nama,nrp,picture,jaminan from peminjam join peminjam_terdaftar on peminjam.peminjam_terdaftar_NRP = peminjam_terdaftar.NRP order by waktu desc limit  10",function(err, rows, fields) {
+					driver.query("select TIMEONLY,DATEONLY,picture,jaminan,nama,nrp from (select jaminan,waktu,picture, DATE_FORMAT(waktu, '%Y-%m-%d') DATEONLY,DATE_FORMAT(waktu,'%H:%i:%s') TIMEONLY,peminjam_terdaftar_NRP from peminjam order by waktu desc limit  10) as peminjam_filter join peminjam_terdaftar on peminjam_filter.peminjam_terdaftar_NRP = peminjam_terdaftar.NRP;",function(err, rows, fields) {
 				  			if (err) throw err;
 				  			fn(rows);
 						}
@@ -74,6 +74,13 @@ module.exports.getStatistikWaktuPeminjaman = function(fn){
 				}
 module.exports.getStatistikAngkatan = function(fn){
 					driver.query("select count(angkatan) as counter,angkatan from peminjam join peminjam_terdaftar on peminjam.peminjam_terdaftar_NRP=peminjam_terdaftar.NRP group by angkatan",function(err, rows, fields) {
+				  			if (err) throw err;
+				  			fn(rows);
+						}
+					);
+				}
+module.exports.getStatistikPeminjaman = function(date,fn){
+					driver.query("select count(*) as counter,DATE_FORMAT(waktu,'%a-%d') date from peminjam where DATE_FORMAT(waktu,'%Y-%b')='"+date+"' group by DATE_FORMAT(waktu,'%a%b') order by waktu asc",function(err, rows, fields) {
 				  			if (err) throw err;
 				  			fn(rows);
 						}
