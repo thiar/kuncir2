@@ -18,7 +18,7 @@ router.get('/', function(req, res, next) {
 router.get('/home', function(req, res, next) {
   if(req.session.login)
   {
-  	res.render('admin/home',{title: 'Express'});
+  	res.render('admin/home',{title: 'Kuncir2',login:req.session.login});
   }
   else
   {
@@ -26,9 +26,25 @@ router.get('/home', function(req, res, next) {
   }
 
 });
+router.get('/statistik', function(req, res, next) {
+  if(req.session.login)
+  {
+    res.render('admin/statistik',{title: 'Kuncir2',login:req.session.login});
+  }
+  else
+  {
+    res.redirect('/admin/login');
+  }
 
+});
 router.get('/login', function(req, res, next) {
-  res.render('admin/login', { title: 'Express' });	
+  res.render('admin/login', {title: 'Kuncir2',login:req.session.login});	
+});
+router.get('/logout', function(req, res, next) {
+  req.session.destroy(function(err) {
+    // cannot access session here
+  })
+  res.render('admin/login');  
 });
 
 router.post('/login', function(req, res, next) {

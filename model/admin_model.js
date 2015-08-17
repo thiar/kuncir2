@@ -42,7 +42,7 @@ module.exports.checkNRP = function(nrp,fn){
 					);
 				}
 module.exports.last_ten = function(fn){
-					driver.query("select DATE_FORMAT(waktu, '%Y-%m-%d') DATEONLY,DATE_FORMAT(waktu,'%H:%i:%s') TIMEONLY,nama,nrp,picture,jaminan from peminjam join peminjam_terdaftar on peminjam.peminjam_terdaftar_NRP = peminjam_terdaftar.NRP limit  10",function(err, rows, fields) {
+					driver.query("select DATE_FORMAT(waktu, '%Y-%m-%d') DATEONLY,DATE_FORMAT(waktu,'%H:%i:%s') TIMEONLY,nama,nrp,picture,jaminan from peminjam join peminjam_terdaftar on peminjam.peminjam_terdaftar_NRP = peminjam_terdaftar.NRP order by waktu desc limit  10",function(err, rows, fields) {
 				  			if (err) throw err;
 				  			fn(rows);
 						}
@@ -65,3 +65,17 @@ module.exports.insertPeminjam = function(waktu,jaminan,picture,nrp,fn){
 					);
 				}
 
+module.exports.getStatistikWaktuPeminjaman = function(fn){
+					driver.query("select count(*) counter,DATE_FORMAT(waktu,'%H') time from peminjam group by DATE_FORMAT(waktu,'%H')",function(err, rows, fields) {
+				  			if (err) throw err;
+				  			fn(rows);
+						}
+					);
+				}
+module.exports.getStatistikAngkatan = function(fn){
+					driver.query("select count(angkatan) as counter,angkatan from peminjam join peminjam_terdaftar on peminjam.peminjam_terdaftar_NRP=peminjam_terdaftar.NRP group by angkatan",function(err, rows, fields) {
+				  			if (err) throw err;
+				  			fn(rows);
+						}
+					);
+				}

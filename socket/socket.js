@@ -36,6 +36,17 @@ module.exports.listen = function(app){
 	    		socket.emit('respond_last_ten',rows);
 	    	})
 	    })
+
+	    socket.on('getStatistikWaktuPeminjaman',function(data){
+	    	admin_model.getStatistikWaktuPeminjaman(function(rows){
+	    		socket.emit('resultStatistikWaktuPeminjaman',rows)
+	    	})
+	    })
+	    socket.on('getStatistikAngkatan',function(data){
+	    	admin_model.getStatistikAngkatan(function(rows){
+	    		socket.emit('resultStatistikAngkatan',rows)
+	    	})
+	    })
     })
     
     return io

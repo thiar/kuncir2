@@ -1,0 +1,23 @@
+<link rel='stylesheet' href='/stylesheets/angular-chart.css' />
+<script src="/javascripts/Chart.min.js"></script>
+<script src="/javascripts/angular-chart.min.js"></script>
+<script src="/javascripts/statistik.js"></script>
+<div  ng-controller='statistik'>
+	<div class="row">
+		<div class="large-4 columns">
+			<select ng-init="graphicOpt='time'" ng-model="graphicOpt">
+				<option value="time">Statistik waktu peminjaman</option>
+				<option value="angkatan">Statistik peminjam perangkatan</option>
+			</select>
+		</div>
+		<div class="large-14 columns">
+			<fieldset>
+			    <legend>Statistik waktu peminjaman kunci</legend>
+			      <canvas ng-if="graphicOpt=='time'" class="chart chart-bar" colours="colours" data="data" labels="labels"></canvas>
+			      <canvas ng-if="graphicOpt=='angkatan'" class="chart chart-polar-area" legend="true" colours="colours" data="data" labels="labels"></canvas>
+			    <button type="button" ng-click="refresh()">Refresh</button>
+		    </fieldset>
+		</div>
+	</div>
+	
+</div>

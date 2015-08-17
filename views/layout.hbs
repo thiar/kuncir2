@@ -5,13 +5,14 @@
     <link rel='stylesheet' href='/stylesheets/style.css' />
     <link rel='stylesheet' href='/stylesheets/foundation.min.css' />
     <link rel='stylesheet' href='/stylesheets/normalize.css' />
+
     <script src='/javascripts/jquery-2.1.4.min.js'></script>
     <script src='/javascripts/foundation.min.js'></script>
     <script src='/javascripts/webcam.min.js'></script>
     <script src='/javascripts/angular.min.js'></script>
-    <script src='/javascripts/app.js'></script>
+    
     <script src="/socket.io/socket.io.js"></script>
-    <script src="/javascripts/bootbox.min.js"></script>
+    <script src='/javascripts/app.js'></script>
 
   </head>
   <body>
@@ -19,11 +20,35 @@
 	  <nav class="top-bar" data-topbar role="navigation" data-options="sticky_on: large">
 	    <ul class="title-area">
 		    <li class="name">
-		      <h1><a href="#">Kuncir2 Beta</a></h1>
+		      <h1><a href="/admin/home">Kuncir2 Beta</a></h1>
 		    </li>
 		     <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
-		    
+		     <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+
 	    </ul>
+	    <section class="top-bar-section">
+		    <!-- Right Nav Section -->
+		    <ul class="right">
+		      <!-- <li class="active"><a href="#">Right Button Active</a></li> -->
+		      {{#if login}}
+		      <li class="has-dropdown">
+		        <a href="#">user</a>
+		        <ul class="dropdown">
+		          <li class="divider"></li>
+		          <li><a href="/admin/logout">Logout</a></li>
+		          
+		        </ul>
+		      </li>
+		      {{/if}}
+		    </ul>
+
+		    <!-- Left Nav Section -->
+		    <ul class="left">
+		    {{#if login}}
+		      <li><a href="/admin/statistik">Statistik</a></li>
+		    {{/if}}
+		    </ul>
+		</section>
 	  </nav>
 	</div>
     {{{body}}}
@@ -32,5 +57,8 @@
 	  <p>Tolong isi data pada semua kolom dengan benar!</p>
 	  <a class="close-reveal-modal" aria-label="Close">&#215;</a>
 	</div>
+	<script>
+        $(document).foundation();
+    </script>
   </body>
 </html>

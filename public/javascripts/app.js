@@ -50,8 +50,8 @@ app.controller('admin', function($scope,$http) {
    Webcam.attach( '#my_camera' );
    $scope.$watch('nrp',function(){
    	$scope.nama = []
-	$scope.noHp = []
-	$scope.angkatan = []
+	  $scope.noHp = []
+	  $scope.angkatan = []
    	if(String($scope.nrp).length==10){
    		$scope.angkatan = "20" + String($scope.nrp).substring(2,4);
    		var data = {
