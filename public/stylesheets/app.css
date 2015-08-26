@@ -1,0 +1,67 @@
+body {
+  	background: #333333;
+	color: #6E6E6E;
+}
+
+#my_camera {
+	width: 100% !important;
+}
+#my_camera video {
+	width: 700px !important;
+}
+.top-margin-1 {
+	margin-top: 1% !important;
+}
+.bottom-margin-1 {
+	margin-bottom: 1% !important;
+}
+.top-margin-3 {
+	margin-top: 3% !important;
+}
+.bottom-margin-3 {
+	margin-bottom: 3% !important;
+}
+.top-padding-3 {
+	padding-top: 3% !important;
+}
+
+.top-padding-2 {
+	padding-top: 2% !important;
+}
+.top-padding-1-5 {
+	padding-top: 1.5% !important;
+}
+.full-width {
+	width: 100%;
+}
+
+.white-background {
+	background: #fff !important;
+}
+
+/* Content Body Styling */
+.content-body {
+	min-height: 85%;
+	background: #F2F2F2;
+}
+/* /Content Body Styling */
+
+/* Footer Styling */
+.footer-wrapper {
+	position: absolute;
+	width: 100%;
+	z-index: 1;
+	background: #333333;
+	color: #fff;
+	padding: 0.7% 2%;
+}
+.footer {
+	background: #333333;
+	color: #fff;
+}
+.footer > h6 {
+	color: #BDBDBD;
+	margin: 0px;
+	font-size: 0.7rem;
+}
+/* End of Footer Styling */

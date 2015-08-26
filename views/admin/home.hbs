@@ -1,66 +1,101 @@
-
-<div ng-controller='admin' >
-	<div class="row" ng-show="!isBorrowed">
-		<div class="large-4 columns">
-			<div id="my_camera" style="width:320px; height:240px;"></div>
-		</div>
-		<div class="large-5 columns">
-			<fieldset>
-			    <legend>Isi Biodata Peminjam</legend>
-			    <label>NRP
-			      <input type="number" min="0" ng-model="nrp" name="nrp" />
-			    </label>
-			    <label>Nama
-			      <input ng-disabled="!isNewUser" type="text" ng-model="nama"/>
-			    </label>
-			    <label >No HP
-			      <input ng-disabled="!isNewUser" type="text" ng-model="noHp"/>
-			    </label>
-			    <label >Angkatan
-			      <input type="text" ng-model="angkatan" disabled>
-			    </label>
-			    <label>Jaminan
-			      <input type="text" ng-model="jaminan" >
-			    </label>
-			    <button type="button" ng-click="BorrowKey()">pinjam</button>
-		    </fieldset>
-		</div>
-		<div class="large-3 columns" style="overflow-y: scroll; height:540px;">
-			<fieldset>
-			    <legend>10 peminjam terakhir</legend>
-			    <div ng-repeat="user in last_ten">
-			    	<fieldset>
-			    		<legend>{[{$index+1}]}</legend>
-			    		<img src="{[{user.picture}]}" />
-			    		<label><b>nrp:</b>{[{user.nrp}]}</label>
-			    		<label><b>nama:</b>{[{user.nama}]}</label>
-			    		<label><b>jaminan:</b>{[{user.jaminan}]}</label>
-			    		<label><b>waktu:</b>{[{user.TIMEONLY}]} {[{user.DATEONLY}]}</label>
-			    	</fieldset>
-			    </div>
-			</fieldset>
-		</div>
-	</div>
-	<div class="row" ng-show="isBorrowed" >
-
-		<div class="small-6 large-centered columns">
-			<fieldset>
-			    <legend>Kunci Sedang dipinjam</legend>
-			    <div id="my_result"></div>
-			    <label>NRP
-			      <input type="number" min="0" ng-model="nrp" name="nrp" disabled/>
-			    </label>
-			    <label>Nama
-			      <input type="text" ng-model="nama" name="nama" disabled/>
-			    </label>
-			    <label>No HP
-			      <input type="text" ng-model="noHp" name="nohp" disabled/>
-			    </label>
-			    <label>Angkatan
-			      <input type="text" ng-model="angkatan" disabled>
-			    </label>
-			    <button type="button" ng-click="ReturnKey()">Kembalikan</button>
-		    </fieldset>		
+<div class="row top-padding-1-5">
+	<div class="column small-12 large-12">
+		<div ng-controller='admin' >
+			<div class="row" ng-show="!isBorrowed">
+				<div class="large-5 columns">
+					<div class="panel white-background">
+						<div id="my_camera"></div>
+					</div>
+				</div>
+				<div class="large-4 columns panel white-background">
+				    <h5>Isi Biodata Peminjam</h5>
+				    <hr style="margin-top:0;"></hr>
+				    <div class="large-12">
+					    <label>NRP
+					      <input type="number" min="0" ng-model="nrp" name="nrp" placeholder="(contoh: 5112100083)"/>
+					    </label>
+					</div>
+					<div class="large-12">
+					    <label>Nama
+					      <input ng-disabled="!isNewUser" type="text" ng-model="nama" placeholder="Nama Jelas (Bukan Samaran)"/>
+					    </label>
+					</div>
+					<div class="large-12">
+					    <label >No HP
+					      <input ng-disabled="!isNewUser" type="text" ng-model="noHp" placeholder="(contoh: 081111222345)"/>
+					    </label>
+					</div>
+					<div class="large-12">
+					    <label >Angkatan
+					      <input type="text" ng-model="angkatan" disabled>
+					    </label>
+					</div>
+					<div class="large-12">
+					    <label>Jaminan
+					      <input type="text" ng-model="jaminan" placeholder="Barang Jaminan">
+					    </label>
+					</div>
+					<div class="large-12">
+					    <button class="button success large-12" type="button" ng-click="BorrowKey()">Pinjam</button>
+					</div>
+				</div>
+				<div class="large-3 columns">
+					<div class="panel white-background bottom-margin-1">
+						<h5>10 Peminjam Terakhir</h5>
+					</div>
+					<div class="panel white-background" style="overflow-y: scroll; height:470px; margin-top:1%;">
+					    <div ng-repeat="user in last_ten">
+					    	<fieldset>
+					    		<legend>{[{$index+1}]}</legend>
+					    		<img src="{[{user.picture}]}" />
+					    		<hr class="top-margin-3 bottom-margin-3"></hr>
+					    		<div class="top-margin-3">
+						    		<label><b>NRP: </b>{[{user.nrp}]}</label>
+						    		<label><b>Nama: </b>{[{user.nama}]}</label>
+						    		<label><b>Jaminan: </b>{[{user.jaminan}]}</label>
+						    		<label><b>Waktu: </b>{[{user.TIMEONLY}]} {[{user.DATEONLY}]}</label>
+						    	</div>
+					    	</fieldset>
+					    </div>
+					</div>
+				</div>
+			</div>
+			<div class="row" ng-show="isBorrowed">
+				<div class="column large-7">
+					<div class="panel white-background">
+						<div id="my_result"></div>
+					</div>
+				</div>
+				<div class="column large-5">
+					<div class="panel white-background">
+					    <h4>Kunci Sedang dipinjam</h4>
+					    <hr style="margin-top:0;"></hr>
+						<div class="large-12">
+						    <label>NRP
+						      <input type="number" min="0" ng-model="nrp" name="nrp" disabled/>
+						    </label>
+						</div>
+						<div class="large-12">
+						    <label>Nama
+						      <input type="text" ng-model="nama" name="nama" disabled/>
+						    </label>
+						</div>
+						<div class="large-12">
+						    <label>No HP
+						      <input type="text" ng-model="noHp" name="nohp" disabled/>
+						    </label>
+						</div>
+						<div class="large-12">
+						    <label>Angkatan
+						      <input type="text" ng-model="angkatan" disabled>
+						    </label>
+						</div>
+						<div class="large-12">
+					    	<button type="button" class="button success large-12" ng-click="ReturnKey()">Kembalikan</button>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
 </div>

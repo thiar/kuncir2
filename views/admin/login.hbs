@@ -1,11 +1,26 @@
-<form method="POST" action="/admin/login">
-	<h3>Username</h3>
-	<input type="text" name="username">
-	<h3>Password</h3>
-	<input type="password" name="pass">
-	<br>
-	<button type="submit">login</button>
-</form>
+<div class="row top-padding-3">
+	<div class="column small-8 small-offset-2 large-6 large-offset-3">
+		<div class="panel white-background">
+			<h3>Please Sign In!</h3>
+			<hr></hr>
+			<form method="POST" action="/admin/login">
+				<div class="large-12">
+					<label>Username
+						<input type="text" name="username" placeholder="Username">
+					</label>
+				</div>
+				<div class="large-12">
+					<label>Password
+						<input type="password" name="pass" placeholder="Password">
+					</label>
+				</div>
+				<div class="large-12">
+					<button type="submit" class="button success small-12 large-12">Sign In</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
 
 <script src="/socket.io/socket.io.js"></script>
 <script>

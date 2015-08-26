@@ -4,7 +4,9 @@
     <title>{{title}}</title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
     <link rel='stylesheet' href='/stylesheets/foundation.min.css' />
+    <link rel='stylesheet' href='/stylesheets/foundation-icons.css' />
     <link rel='stylesheet' href='/stylesheets/normalize.css' />
+    <link rel='stylesheet' href='/stylesheets/app.css' />
 
     <script src='/javascripts/jquery-2.1.4.min.js'></script>
     <script src='/javascripts/foundation.min.js'></script>
@@ -20,7 +22,7 @@
 	  <nav class="top-bar" data-topbar role="navigation" data-options="sticky_on: large">
 	    <ul class="title-area">
 		    <li class="name">
-		      <h1><a href="/admin/home">Kuncir2 Beta</a></h1>
+		      <h1><a href="javascript:void(0)">Kuncir2 Beta</a></h1>
 		    </li>
 		     <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
 		     <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
@@ -32,10 +34,10 @@
 		      <!-- <li class="active"><a href="#">Right Button Active</a></li> -->
 		      {{#if login}}
 		      <li class="has-dropdown">
-		        <a href="#">user</a>
+		        <a href="#">User <i class="fi-torso"></i></a>
 		        <ul class="dropdown">
 		          <li class="divider"></li>
-		          <li><a href="/admin/logout">Logout</a></li>
+		          <li><a href="/admin/logout">Sign Out <i class="fi-power"></i></a></li>
 		          
 		        </ul>
 		      </li>
@@ -45,18 +47,32 @@
 		    <!-- Left Nav Section -->
 		    <ul class="left">
 		    {{#if login}}
-		      <li><a href="/admin/statistik">Statistik</a></li>
+		      <li><a href="/admin/home">Beranda <i class="fi-home"></i></a></li>
+		      <li><a href="/admin/statistik">Statistik <i class="fi-graph-bar"></i></a></li>
 		    {{/if}}
 		    </ul>
 		</section>
 	  </nav>
 	</div>
-    {{{body}}}
-    <div id="alert" class="reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
-	  <h2 id="modalTitle">Data Belum Lengkap!</h2>
-	  <p>Tolong isi data pada semua kolom dengan benar!</p>
-	  <a class="close-reveal-modal" aria-label="Close">&#215;</a>
+
+	<div class="content-body">
+	    {{{body}}}
+	    <div id="alert" class="reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+		  <h2 id="modalTitle">Data Belum Lengkap!</h2>
+		  <p>Tolong isi data pada semua kolom dengan benar!</p>
+		  <a class="close-reveal-modal" aria-label="Close">&#215;</a>
+		</div>
 	</div>
+	
+	<footer class="footer-wrapper">
+		<div class="row">
+			<div class="footer column large-12">
+				<h6>&copy; 2014-2015 KUNCIR APP v2</h6>
+				<h6>Created by: <a target="_blank" href="https://www.facebook.com/shine.wind.1">Thiar Hasbiya D</a> | Laboratorium Arsitektur dan Jaringan Komputer</h6>
+			</div>
+		</div>
+	</footer>
+	
 	<script>
         $(document).foundation();
     </script>
