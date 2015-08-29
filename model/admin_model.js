@@ -80,7 +80,7 @@ module.exports.getStatistikAngkatan = function(fn){
 					);
 				}
 module.exports.getStatistikPeminjaman = function(date,fn){
-					driver.query("select count(*) as counter,DATE_FORMAT(waktu,'%a-%d') date from peminjam where DATE_FORMAT(waktu,'%Y-%b')='"+date+"' group by DATE_FORMAT(waktu,'%a%b') order by waktu asc",function(err, rows, fields) {
+					driver.query("select count(*) as counter,DATE_FORMAT(waktu,'%a-%d') date from peminjam where DATE_FORMAT(waktu,'%Y-%b')='"+date+"' group by DATE_FORMAT(waktu,'%a%d') order by waktu asc",function(err, rows, fields) {
 				  			if (err) throw err;
 				  			fn(rows);
 						}

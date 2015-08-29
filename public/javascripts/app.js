@@ -90,6 +90,15 @@ app.controller('admin', function($scope,$http) {
                   {
                     document.getElementById('my_result').innerHTML = '<img id="result" src="'+data_uri+'"/>';
                     $scope.isBorrowed = true;
+                    var data = {
+                      nrp: $scope.nrp,
+                      nama: $scope.nama,
+                      nohp: $scope.noHp,
+                      jaminan:$scope.jaminan,
+                      angkatan:$scope.angkatan,
+                      picture:data_uri,
+                      isNewUser : $scope.isNewUser
+                    }
                     socket.emit('saveData',data);
                   }
               }
