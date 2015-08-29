@@ -4,7 +4,7 @@ app.config(function($interpolateProvider) {
   $interpolateProvider.endSymbol('}]}');
 })
 app.controller('admin', function($scope,$http) {
-   
+
    var socket = io.connect();
    last_ten(socket)
    Webcam.set({
@@ -18,6 +18,8 @@ app.controller('admin', function($scope,$http) {
         flip_horiz: true,
         fps: 45
     });
+   Webcam.attach('#my_camera' );
+
    $scope.isNewUser = true;
    $scope.jaminan = [];
    $scope.nama =null;
@@ -47,7 +49,7 @@ app.controller('admin', function($scope,$http) {
    	socket.emit('last_ten',data);
    }
    $scope.isBorrowed = false;
-   Webcam.attach( '#my_camera' );
+   
    $scope.$watch('nrp',function(){
    	$scope.nama = []
 	  $scope.noHp = []
@@ -76,8 +78,22 @@ app.controller('admin', function($scope,$http) {
    	else
    	{
 	   	 Webcam.snap( function(data_uri) {
-	        document.getElementById('my_result').innerHTML = '<img src="'+data_uri+'"/>';
-	        $scope.isBorrowed = true;
+	        document.getElementById('falseFoto').innerHTML = '<img style="width:320px;height:240px;" id="falseFaces" src="'+data_uri+'"/>';
+	        $('#falseFaces').faceDetection({
+              complete: function (faces) {
+                  console.log(faces.length)
+                  if(faces.length==0)
+                  {
+                    $('#fotoAlert').foundation('reveal','open');
+                  }
+                  else
+                  {
+                    document.getElementById('my_result').innerHTML = '<img id="result" src="'+data_uri+'"/>';
+                    $scope.isBorrowed = true;
+                    socket.emit('saveData',data);
+                  }
+              }
+          })
 	        var data = {
 	   			nrp: $scope.nrp,
 	   			nama: $scope.nama,
@@ -87,8 +103,7 @@ app.controller('admin', function($scope,$http) {
 	   			picture:data_uri,
 	   			isNewUser : $scope.isNewUser
 	   		}
-	   		console.log(data_uri.length)
-	   		socket.emit('saveData',data);
+        
 
 
 	    });   		
